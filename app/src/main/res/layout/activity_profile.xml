@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:text="Profile" android:textSize="20sp" android:textStyle="bold"/>
+    <Button android:id="@+id/yourQuestionsBtn" android:text="Your Questions" android:layout_marginTop="12dp"/>
+    <Button android:id="@+id/yourSetsBtn" android:text="Your Study Sets" android:layout_marginTop="8dp"/>
+    <Button android:id="@+id/settingsBtn" android:text="Settings" android:layout_marginTop="8dp"/>
+</LinearLayout>
