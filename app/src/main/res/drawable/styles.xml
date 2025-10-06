@@ -1,0 +1,8 @@
+<style android:name="FilterButton"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:name="android:layout_marginEnd">8dp</item>
+    <item android:name="android:backgroundTint">#E0E0E0</item>
+    <item android:name="android:textColor">#000000</item>
+    <item android:name="android:paddingHorizontal">16dp</item>
+    <item android:name="android:paddingVertical">8dp</item>
+</style>

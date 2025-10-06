@@ -1,32 +1,55 @@
-package com.example.lostandfoundmarkitpless.activities
+package com.example.lostandfoundmarkitpless
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.lostandfoundmarkitpless.adapters.StudySetAdapter
-import com.example.lostandfoundmarkitpless.databinding.ActivityMainBinding // 1. Import the binding class
-import com.example.lostandfoundmarkitpless.models.Flashcard
-import com.example.lostandfoundmarkitpless.models.StudySet
+import com.example.lostandfoundmarkitpless.adapters.ItemAdapter
+import com.example.lostandfoundmarkitpless.models.LostItem
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding // 2. Create a binding variable
+    private val allItems = listOf(
+        LostItem("University ID Card", "Found near the library entrance. Belongs to Alex.", "ID Cards", "Found"),
+        LostItem("Chemistry Textbook", "Lost in the science building. Title: Organic Chemistry, 7th Edition.", "Books", "Lost"),
+        LostItem("Bose Headphones", "Found in the cafeteria. Black color, over-ear style.", "Gadgets", "Found"),
+        LostItem("Luxury Pen Set", "Lost during seminar in Room 204.", "Stationery", "Lost")
+    )
+
+    private lateinit var adapter: ItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater) // 3. Inflate the layout
-        setContentView(binding.root) // 4. Set the content view to the binding's root
+        setContentView(R.layout.activity_main)
 
-        val dummy = listOf(
-            StudySet("1","Organic Chemistry Basics","Intro to alkanes", listOf(
-                Flashcard("f1","What is an alkane?","A hydrocarbon with only single bonds."),
-                Flashcard("f2","General formula for alkanes?","CnH2n+2")
-            )),
-            StudySet("2","Physics Equations","Important formulas", emptyList())
-        )
+        adapter = ItemAdapter(allItems)
+        itemRecycler.layoutManager = LinearLayoutManager(this)
+        itemRecycler.adapter = adapter
 
-        // 5. Access views through the binding object
-        binding.studySetsRecycler.layoutManager = LinearLayoutManager(this)
-        binding.studySetsRecycler.adapter = StudySetAdapter(dummy)
+        val searchBar = findViewById<EditText>(R.id.searchBar)
+        searchBar.setOnEditorActionListener { _, _, _ ->
+            val query = searchBar.text.toString().trim()
+            val filtered = allItems.filter {
+                it.title.contains(query, ignoreCase = true) ||
+                        it.description.contains(query, ignoreCase = true)
+            }
+            adapter.updateList(filtered)
+            true
+        }
+
+        // Filter buttons
+        findViewById<Button>(R.id.btnAll).setOnClickListener { adapter.updateList(allItems) }
+        findViewById<Button>(R.id.btnIDCards).setOnClickListener { filterByCategory("ID Cards") }
+        findViewById<Button>(R.id.btnBooks).setOnClickListener { filterByCategory("Books") }
+        findViewById<Button>(R.id.btnGadgets).setOnClickListener { filterByCategory("Gadgets") }
+        findViewById<Button>(R.id.btnStationery).setOnClickListener { filterByCategory("Stationery") }
+    }
+
+    private fun filterByCategory(category: String) {
+        val filtered = allItems.filter { it.category == category }
+        adapter.updateList(filtered)
     }
 }

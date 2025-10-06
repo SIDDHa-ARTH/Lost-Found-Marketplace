@@ -1,19 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    android:layout_height="match_parent">
 
+    <!-- Header -->
+    <TextView
+        android:id="@+id/headerTitle"
+        android:text="Lost and Found"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" />
+
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/searchBar"
+        android:hint="Search items..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_bar_bg"
+        android:padding="12dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Category Filters -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+
+            <Button
+                android:id="@+id/btnAll"
+                style="@style/FilterButton"
+                android:layout_width="68dp"
+                android:layout_height="match_parent"
+                android:text="All" />
+
+            <Button
+                android:id="@+id/btnIDCards"
+                style="@style/FilterButton"
+                android:layout_width="98dp"
+                android:layout_height="50dp"
+                android:text="ID Cards" />
+
+            <Button
+                android:id="@+id/btnBooks"
+                style="@style/FilterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Books" />
+
+            <Button
+                android:id="@+id/btnGadgets"
+                style="@style/FilterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gadgets" />
+
+            <Button
+                android:id="@+id/btnStationery"
+                style="@style/FilterButton"
+                android:layout_width="115dp"
+                android:layout_height="50dp"
+                android:text="Stationery" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Item List -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/study_sets_recycler"
-        android:layout_width="0dp"
+        android:id="@+id/itemRecycler"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_study_set" /> <!-- It's good practice to add this line -->
+        android:layout_weight="1"
+        android:padding="10dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="41dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_home1" />
+
+            <TextView
+                android:layout_width="57dp"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="41dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_add" />
+
+            <TextView
+                android:layout_width="51dp"
+                android:layout_height="wrap_content"
+                android:text="Report"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="41dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_profile" />
+
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="41dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_notify" />
+
+            <TextView
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:text="Notify"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
