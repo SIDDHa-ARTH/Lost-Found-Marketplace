@@ -6,6 +6,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lostandfoundmarkitpless.R
 
+import com.example.lostandfoundmarkitpless.MainActivity
+
 class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +18,6 @@ class ProfileActivity : AppCompatActivity() {
         val setBtn = findViewById<Button>(R.id.settingsBtn)
 
         qBtn.setOnClickListener { startActivity(Intent(this, QuestionsActivity::class.java)) }
-        sBtn.setOnClickListener { startActivity(Intent(this, MainActivity::class.java)) }
+        sBtn.setOnClickListener { startActivity(Intent(this,  MainActivity::class.java)) }
     }
 }
